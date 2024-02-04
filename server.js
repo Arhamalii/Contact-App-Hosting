@@ -11,8 +11,10 @@ connectDB();
 
 const app = express();
 
+app.use(express.static(path.resolve(__dirname, "./client/dist")));
+
 // middlewares
-app.use(express.json({ extendden: false }));
+app.use(express.json({ extended: false }));
 app.use(morgan("dev"));
 app.use(cors());
 
@@ -22,7 +24,6 @@ app.use("/api/contacts", contactRoute);
 
 // home route
 app.get("/", (req, res) => {
-  app.use(express.static(path.resolve(__dirname, "./client/dist")));
   res.sendFile(path.resolve(__dirname, "./client/dist/index.html"));
 });
 
