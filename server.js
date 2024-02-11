@@ -10,10 +10,15 @@ connectDB();
 
 const app = express();
 
+const corsOptions = {
+  origin: '*',
+};
+
+
 // middlewares
 app.use(express.json({ extended: false }));
 app.use(morgan("dev"));
-app.use(cors());
+app.use(cors(corsOptions));
 
 // routes
 app.use("/api/auth", authRoute);
